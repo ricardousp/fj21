@@ -1,3 +1,5 @@
+use fj21;
+
 create table contatos (
 id BIGINT NOT NULL AUTO_INCREMENT,
 nome VARCHAR(255),
