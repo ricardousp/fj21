@@ -6,3 +6,4 @@ endereco VARCHAR(255),
 dataNascimento DATE,
 primary key (id)
 );
+
