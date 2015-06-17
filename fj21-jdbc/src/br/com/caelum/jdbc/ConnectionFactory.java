@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionFactory {
-	public static Connection getConnection() {
+	public Connection getConnection() {
 		try {
 			return DriverManager.getConnection(
 					"jdbc:mysql://localhost/fj21", "root", "r00t");

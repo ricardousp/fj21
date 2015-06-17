@@ -9,10 +9,11 @@ import br.com.caelum.jdbc.ConnectionFactory;
 
 public class JDBCInsere {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
+		Connection con = null;
 		try {
 			// conectando
-			Connection con = new ConnectionFactory().getConnection();
+			con = new ConnectionFactory().getConnection();
 			// cria um preparedStatement
 			String sql = "insert into contatos" +
 					" (nome,email,endereco,dataNascimento)" +
@@ -28,12 +29,13 @@ public class JDBCInsere {
 			stmt.execute();
 			stmt.close();
 			System.out.println("Gravado!");
-			con.close();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			con.close();
 		}
+		
 	}
 
 }
