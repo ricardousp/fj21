@@ -13,7 +13,6 @@ public class TestaLista {
 		 List<Contato> contatos = dao.getLista();
 		 
 		 for (Contato contato : contatos) {
-			 
 			 System.out.println("Nome: " + contato.getNome());
 			 System.out.println("Email: " + contato.getEmail());
 			 System.out.println("Endereço: " + contato.getEndereco());
