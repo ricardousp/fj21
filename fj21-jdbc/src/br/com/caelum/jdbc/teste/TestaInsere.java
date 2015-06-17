@@ -12,7 +12,6 @@ public class TestaInsere {
 		// instancia contato
 		Contato diego = new Contato();
 
-		diego.setId(12345L);
 		diego.setNome("Carlos Diego");
 		diego.setDataNascimento(Calendar.getInstance());
 		diego.setEmail("carlos.damasceno08@gmail.com");

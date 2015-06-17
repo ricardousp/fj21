@@ -2,12 +2,15 @@ package br.com.caelum.jdbc.dao;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 import br.com.caelum.jdbc.ConnectionFactory;
 import br.com.caelum.jdbc.modelo.Contato;
-
-import java.sql.PreparedStatement;
 
 public class ContatoDAO {
 
@@ -37,5 +40,39 @@ public class ContatoDAO {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	public List<Contato> getLista() {
+		List<Contato> result = new ArrayList<Contato>();
+
+		try {
+			String sql = "select * from contatos";
+			
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				Contato c = new Contato();
+				c.setId(rs.getLong("id"));				
+				c.setNome(rs.getString("nome"));
+				c.setEmail(rs.getString("email"));
+				c.setEndereco(rs.getString("endereco"));
+				
+				// define data de nascimento usando Calendar
+				Calendar data = Calendar.getInstance();
+				data.setTime(rs.getDate("dataNascimento"));
+				c.setDataNascimento(data);
+				
+				//adiciona contato
+				result.add(c);
+			}
+			rs.close();
+			stmt.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+
+		return result;
 	}
 }
