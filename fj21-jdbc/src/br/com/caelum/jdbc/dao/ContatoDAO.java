@@ -75,4 +75,39 @@ public class ContatoDAO {
 
 		return result;
 	}
+	
+	public List<Contato> getContato(String nome) {
+		List<Contato> result = new ArrayList<Contato>();
+
+		try {
+			String sql = "select * from contatos where nome like (?)";
+			
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setString(1, nome);
+			ResultSet rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				Contato c = new Contato();
+				c.setId(rs.getLong("id"));				
+				c.setNome(rs.getString("nome"));
+				c.setEmail(rs.getString("email"));
+				c.setEndereco(rs.getString("endereco"));
+				
+				// define data de nascimento usando Calendar
+				Calendar data = Calendar.getInstance();
+				data.setTime(rs.getDate("dataNascimento"));
+				c.setDataNascimento(data);
+				
+				//adiciona contato
+				result.add(c);
+			}
+			rs.close();
+			stmt.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+
+		return result;
+	}
 }
