@@ -135,4 +135,21 @@ public class ContatoDAO {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public void removeContato(Contato c) {
+		try {
+			String sql = "delete from contatos "
+					+ "where id=?";
+			
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setLong(1,c.getId());
+			// executa
+			stmt.execute();
+			stmt.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
 }

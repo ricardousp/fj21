@@ -1,34 +1,27 @@
 package br.com.caelum.jdbc.teste;
 
 import java.util.Calendar;
-import java.util.List;
 
 import br.com.caelum.jdbc.dao.ContatoDAO;
 import br.com.caelum.jdbc.modelo.Contato;
 
-public class TestaAltera {
-
+public class TestaRemove {
 	public static void main(String[] args) {
 		try {
 			ContatoDAO dao = new ContatoDAO();
 
-			Contato diego = new Contato();
+			Contato caelum = new Contato();
 
-			diego.setId(4L);
-			diego.setNome("Damasceno");
-			diego.setDataNascimento(Calendar.getInstance());
-			diego.setEmail("damascenodiego@usp.br");
-			diego.setEndereco("SAO CARLOS");
+			caelum.setId(1L);
 
 			// instancia ContatoDAO
 
-			dao.alteraContato(diego);
-			
+			dao.removeContato(caelum);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
 
 	}
-
 }
