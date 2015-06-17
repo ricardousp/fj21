@@ -110,4 +110,29 @@ public class ContatoDAO {
 
 		return result;
 	}
+	
+	public void alteraContato(Contato c){
+		try {
+			String sql = "update contatos set "
+					+ "nome=?,"
+					+ "email=?,"
+					+ "endereco=?,"
+					+ "dataNascimento=?"
+					+ "where id=?";
+			
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setString(1,c.getNome());
+			stmt.setString(2,c.getEmail());
+			stmt.setString(3,c.getEndereco());
+			stmt.setDate(4, new Date(c.getDataNascimento().getTimeInMillis()));
+			stmt.setLong(5,c.getId());
+			// executa
+			stmt.execute();
+			stmt.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
 }
