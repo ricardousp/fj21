@@ -17,7 +17,7 @@ public class ContatoDAO {
 		this.connection = new ConnectionFactory().getConnection();
 	}
 
-	private void adiciona(Contato contato) {
+	public void adiciona(Contato contato) {
 		String sql = "insert into contatos " +
 				"(nome,email,endereco,dataNascimento)" +
 				" values (?,?,?,?)";
