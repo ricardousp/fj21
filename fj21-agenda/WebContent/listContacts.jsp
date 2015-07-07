@@ -22,5 +22,5 @@
 	<li><%=c.getNome()%>,<%=c.getEmail()%>:<%=c.getEndereco()%></li><%
 		}
 	%>
-	
+</body>	
 </html>
