@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="br.com.caelum.jdbc.dao.ContatoDAO"%>
 <%@page import="br.com.caelum.jdbc.modelo.*"%>
@@ -12,6 +13,7 @@
 <title>Welcome!</title>
 </head>
 <body>
+	<c:import url="header.jsp" />
 	<%="List of contacts"%><br>
 	<jsp:useBean id="dao" class="br.com.caelum.jdbc.dao.ContatoDAO" />
 	<table border="1">
@@ -34,10 +36,12 @@
 						N/A
 					</c:when>
 				</c:choose></td>
-				<td>${contact.dataNascimento.time}</td>
+				<fmt:formatDate value="${contact.dataNascimento.time}" pattern="MM/dd/YYYY"/>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>
+	<c:import url="footer.jsp" />
 </body>
 
 
