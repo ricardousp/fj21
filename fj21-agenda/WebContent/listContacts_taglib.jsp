@@ -26,12 +26,14 @@
 				<td>${contact.nome}</td>
 				<td>${contact.endereco}</td>
 				<td>
-					<c:if test="${not empty contact.email}">
+				<c:choose>
+					<c:when test="${not empty contact.email}">
 						<a href="mailto:${contact.email}">${contact.email}</a>
-					</c:if>
-					<c:if test="${empty contact.email }">
+					</c:when>
+					<c:when test="${empty contact.email }">
 						N/A
-					</c:if></td>
+					</c:when>
+				</c:choose></td>
 				<td>${contact.dataNascimento.time}</td>
 			</tr>
 		</c:forEach>
