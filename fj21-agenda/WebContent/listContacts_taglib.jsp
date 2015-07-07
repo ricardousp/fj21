@@ -15,11 +15,23 @@
 	<%="List of contacts"%><br>
 	<jsp:useBean id="dao" class="br.com.caelum.jdbc.dao.ContatoDAO" />
 	<table border="1">
+		<tr bgcolor="#${id.count % 2 == 0 ? 'aaee88' : 'ffffff' }">
+			<td>Name</td>
+			<td>Address</td>
+			<td>Email</td>
+			<td>Birth</td>
+		</tr>
 		<c:forEach var="contact" items="${dao.lista}" varStatus="id">
 			<tr bgcolor="#${id.count % 2 == 0 ? 'aaee88' : 'ffffff' }">
 				<td>${contact.nome}</td>
 				<td>${contact.endereco}</td>
-				<td>${contact.email}</td>
+				<td>
+					<c:if test="${not empty contact.email}">
+						<a href="mailto:${contact.email}">${contact.email}</a>
+					</c:if>
+					<c:if test="${empty contact.email }">
+						N/A
+					</c:if></td>
 				<td>${contact.dataNascimento.time}</td>
 			</tr>
 		</c:forEach>
