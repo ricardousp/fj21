@@ -36,6 +36,7 @@
 						N/A
 					</c:when>
 				</c:choose></td>
+				<!-- formatting date -->
 				<fmt:formatDate value="${contact.dataNascimento.time}" pattern="MM/dd/YYYY"/>
 				</td>
 			</tr>
